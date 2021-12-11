@@ -4,48 +4,12 @@ tables.py
 Lookup tables for RISC-V RV32I ISA
 """
 i_formats = {
-    "R": {
-        "funct7": 0xFE000000,
-        "rs2": 0x01F00000,
-        "rs1": 0x000F8000,
-        "funct3": 0x00007000,
-        "rd": 0x00000F80,
-        "op_code": 0x0000007F,
-    },
-    "I": {
-        "imm": 0xFFF00000,
-        "rs1": 0x000F8000,
-        "funct3": 0x00007000,
-        "rd": 0x00000F80,
-        "op_code": 0x0000007F,
-    },
-    "S": {
-        "imm_11_5": 0xFE000000,
-        "rs2": 0x01F00000,
-        "rs1": 0x000F8000,
-        "funct3": 0x00007000,
-        "imm_4_0": 0x00000F80,
-        "op_code": 0x0000007F,
-    },
-    "SB": {
-        "imm_12_10_5": 0xFE000000,
-        "rs2": 0x01F00000,
-        "rs1": 0x000F8000,
-        "funct3": 0x00007000,
-        "imm_4_1_11": 0x00000F80,
-        "op_code": 0x0000007F,
-        "op_code": 0x0000007F,
-    },
-    "U": {
-        "imm_31_12": 0xFFFFF000,
-        "rd": 0x00000F80,
-        "op_code": 0x0000007F,
-    },
-    "UJ": {
-        "imm_20_10_1_11_10_12": 0xFFFFF000,
-        "rd": 0x00000F80,
-        "op_code": 0x0000007F,
-    },
+    "R": ["funct7", "rs2", "rs1", "funct3", "rd", "opcode"],
+    "I": ["imm", "rs1", "funct3", "rd", "opcode"],
+    "S": ["imm", "rs2", "rs1", "funct3", "opcode"],
+    "SB": ["imm", "rs2", "rs1", "funct3", "opcode"],
+    "U": ["imm", "rd", "opcode"],
+    "UJ": ["imm", "rd", "opcode"],
 }
 
 i_type_by_oc = {

@@ -1,23 +1,36 @@
-def read_instuctions():
-    pass
+"""
+dissasembler.py
+---------------
+Module containing functions for disassembling RISC-V instructions.
 
-def translate_instruction(instruction):
-    pass
+Author: Oscar Jaimes
+Last Updated: 11-12-2021
+"""
 
-def get_opcode(i):
+
+from io import BufferedReader
+from tables import op_codes
+from tables import regs
+
+
+def disassemble(fstream: BufferedReader):
+    instructions = []
+    cur_i = fstream.read(4)  # 4 bytes @ a time bois
+    while cur_i:
+        i_dis = disassemble_instruction(cur_i)
+        instructions.append(i_dis)
+        cur_i = fstream.read(4)
+    return instructions
+
+
+def disassemble_instruction(instruction: bytes):
+    return instruction
+
+
+def get_opcode(instruction: bytes):
     m = 0b1111111
     return m & i
 
+
 def get_type(instruction):
     pass
-
-
-def main():
-    test_instruction = 0b0000000101011010000001001011011
-    
-    oc = get_opcode(test_instruction)
-    print(oc)
-    
-    print(int(0b0110011))
-    
-main()

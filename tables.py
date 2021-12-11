@@ -1,3 +1,8 @@
+"""
+tables.py
+----------
+Lookup tables for RISC-V RV32I ISA
+"""
 i_formats = {
     "R": {
         "funct7": 0xFE000000,
@@ -43,7 +48,7 @@ i_formats = {
     },
 }
 
-op_code_types = {
+i_type_by_oc = {
     0x3: "I",  # lb, lh, lw, lbu, lhu
     0xF: "I",  # fence, fence.i
     0x13: "I",  # addi, slli, slti, sltiu, xori, srli, srai, ori, andi

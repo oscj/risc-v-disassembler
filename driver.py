@@ -20,6 +20,8 @@ if __name__ == "__main__":
     try:
         with open(fstr, "rb") as f:
             res = ds.disassemble(f)
+            for i in res:
+                print(i)
             exit(0)
 
     except FileNotFoundError:

@@ -30,30 +30,34 @@ def disassemble_instruction(instruction: bytes) -> str:
     i_format = i_formats[i_type]
     i = get_instruction(instruction, oc, i_format, i_type)
 
+    rs1 = get_rs1(instruction)
+    rs2 = get_rs2(instruction)
+    rd = get_rd(instruction)
+    i_imm = get_i_type_imm(instruction)
+    s_imm = get_s_type_imm(instruction)
+    sb_imm = get_sb_type_imm(instruction)
+    u_imm = get_u_type_imm(instruction)
+    uj_imm = get_uj_type_imm(instruction)
+    
     if i_type == "I":
-        rs1 = get_rs1(instruction)
-        rd = get_rd(instruction)
-        imm = get_i_type_imm(instruction)
-        if i[0] == "l":
-            i += f" {rd}, {imm}({rs1})"
+        if i[0] == "l": # loads are diff format
+            i += f" {rd}, {i_imm}({rs1})"
         else:
-            i += f" {rd}, {rs1}, {imm}"
-
+            i += f" {rd}, {rs1}, {i_imm}"
+            
     elif i_type == "R":
-        rs1 = get_rs1(instruction)
-        rs2 = get_rs2(instruction)
-        rd = get_rd(instruction)
         i += f" {rd}, {rs1}, {rs2}"
+        
     elif i_type == "S":
-        rs1 = get_rs1(instruction)
-        rs2 = get_rs2(instruction)
-        imm = get_s_type_imm(instruction)
-        i += f" {rs2}, {imm}({rs1})"
+        i += f" {rs2}, {s_imm}({rs1})"
+        
     elif i_type == "SB":
-        pass
+        i += f" {rs1}, {rs2}, {sb_imm} "
+    
     elif i_type == "U":
-        pass
+        i += f" {rd}, {u_imm}"
+    
     elif i_type == "UJ":
-        pass
-
+        i += f" {rd}, {uj_imm}"
+        
     return i

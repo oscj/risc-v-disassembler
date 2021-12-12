@@ -91,15 +91,39 @@ def get_s_type_imm(instruction: bytes) -> int:
 
 
 def get_sb_type_imm(instruction: bytes) -> int:
-    pass
+    imm_12_m = bytes([]).fromhex("80000000")  # mask for imm_12 into bytes
+    imm_10_5_m = bytes([]).fromhex("7E000000")  # mask for imm_10_5 into bytes
+    imm_11_m = bytes([]).fromhex("00000080")  # mask for imm_11 into bytes
+    imm_4_1_m = bytes([]).fromhex("00000F00")  # mask for imm_4_1 into bytes
+
+    imm_12 = bitwise_and_bytes(instruction, imm_12_m) >> 19
+    imm_10_5 = bitwise_and_bytes(instruction, imm_10_5_m) >> 20
+    im_11 = bitwise_and_bytes(instruction, imm_11_m) << 4
+    imm_4_1 = bitwise_and_bytes(instruction, imm_4_1_m) >> 7
+
+    imm = imm_12 | imm_10_5 | im_11 | imm_4_1
+    return imm
 
 
 def get_u_type_imm(instruction: bytes) -> int:
-    pass
+    imm_m = bytes([]).fromhex("FFFFF000")  # mask for imm into bytes
+    imm = bitwise_and_bytes(instruction, imm_m) >> 12
+    return imm
 
 
 def get_uj_type_imm(instruction: bytes) -> int:
-    pass
+    imm_20_m = bytes([]).fromhex("80000000")  # mask for imm_20 into bytes
+    imm_10_1_m = bytes([]).fromhex("7FE00000")  # mask for imm_10_1 into bytes
+    imm_11_m = bytes([]).fromhex("00001000")  # mask for imm_11 into bytes
+    imm_19_12_m = bytes([]).fromhex("000FF000")  # mask for imm_19_12 into bytes
+    
+    imm_20 = bitwise_and_bytes(instruction, imm_20_m) >> 11
+    imm_10_1 = bitwise_and_bytes(instruction, imm_10_1_m) >> 19
+    imm_11 = bitwise_and_bytes(instruction, imm_11_m) >> 9
+    imm_19_12 = bitwise_and_bytes(instruction, imm_19_12_m)
+    
+    imm = imm_20 | imm_10_1 | imm_11 | imm_19_12
+    return imm
 
 
 def translate_register(reg: int) -> str:

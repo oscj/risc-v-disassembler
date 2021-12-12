@@ -1,7 +1,7 @@
 """
 tables.py
 ----------
-Lookup tables for RISC-V RV32I ISA
+Lookup tables for RV32I ISA
 """
 i_formats = {
     "R": ["funct7", "rs2", "rs1", "funct3", "rd", "opcode"],

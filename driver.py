@@ -5,14 +5,13 @@ driver.py
 Main driver for dissasembling RISC-V binary code.
 
 Author: Oscar Jaimes
-Last Updated: 11/12/2021
 """
 import sys
 import dissasembler as ds
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: ./dissasembler.py <file>")
+        print("Usage: ./dissasembler.py <binary_riscv_file>")
         exit(1)
 
     fstr = sys.argv[1]

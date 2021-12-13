@@ -4,12 +4,16 @@ A disassembler for RISC-V (32I) ISA written in Python.
 
 Have a final for computer architecture class next week. This is how I reviewed instruction formats.
 
-Usage:
+1. [Usage](#usage)
+1. [Example](#example)
+1. [Assembling](#assembling)
+
+### Usage
 ```
 ./driver <riscv_binary_file>
 ```
 
-Example:
+### Example
 ```
 ./driver s_files/sum.bin
 ```
@@ -40,3 +44,13 @@ lw ra, 12(sp)
 addi sp, sp, 16
 jalr zero, ra, 0
 ```
+
+### Assembling
+In order to disassemble a RISC-V binary program, one must first have a RISC-V binary program. To obtain my RISC-V binary programs, I used the [RARS RISC-V Simulator](https://github.com/TheThirdOne/rars)
+
+It comes with a CLI, which uses the following command to assembly a RISC-V assembly file:
+
+```bash
+rars <risc_v_assembly_file> a dump .text Binary <output_binary_file>
+```
+

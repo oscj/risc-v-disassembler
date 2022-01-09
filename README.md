@@ -2,7 +2,7 @@
 
 A disassembler for RISC-V (32I) ISA written in Python.
 
-Have a final for computer architecture class next week. This is how I reviewed instruction formats.
+Had a final for a computer architecture class. This is how I reviewed instruction formats.
 
 1. [Usage](#usage)
 1. [Example](#example)
